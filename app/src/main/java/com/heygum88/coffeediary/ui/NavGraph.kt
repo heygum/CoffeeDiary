@@ -11,6 +11,9 @@ import androidx.navigation.compose.rememberNavController
 import com.heygum88.coffeediary.ui.coffee.CoffeeRoute
 import com.heygum88.coffeediary.ui.home.HomeRoute
 
+/**
+ * Navigation Graph
+ */
 @Composable
 fun NavGraph(
     navController: NavHostController = rememberNavController(),

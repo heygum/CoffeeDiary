@@ -4,6 +4,9 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 
 
+/**
+ * Using this to name each destination
+ */
 object NavDestination {
     const val HOME_DESTINATION = "home"
     const val COFFEE_DESTINATION = "coffee"
@@ -39,6 +42,9 @@ class NavAction(navController: NavHostController) {
         }
     }
 
+    /**
+     * Navigate
+     */
     fun navigate(destination: String): () -> Unit {
         when(destination) {
             NavDestination.HOME_DESTINATION -> {

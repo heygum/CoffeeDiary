@@ -8,6 +8,9 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import com.heygum88.coffeediary.ui.NavAction
 
+/**
+ * Coffee page
+ */
 const val TAG = "coffee"
 @Composable
 fun CoffeeRoute(navAction: NavAction) {
