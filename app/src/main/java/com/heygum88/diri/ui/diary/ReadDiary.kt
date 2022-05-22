@@ -1,6 +1,7 @@
 package com.heygum88.diri.ui.diary
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -11,6 +12,7 @@ import androidx.compose.ui.unit.dp
 import com.heygum88.diri.data.Diary
 import com.heygum88.diri.tool.DateFormatter
 import com.heygum88.diri.ui.NavAction
+import com.heygum88.diri.ui.home.DiaryListItem
 
 @Composable
 fun ReadDiary(navAction: NavAction) {
@@ -25,10 +27,12 @@ fun ReadDiary(navAction: NavAction) {
             .padding(horizontal = 20.dp)){
 
             currentDiary?.let {
-                Column() {
-                    Text(text = DateFormatter.millsToDate(currentDiary.date))
-                    Spacer(modifier = Modifier.size(30.dp))
-                    Text(text = currentDiary.body)
+                LazyColumn() {
+                    item {
+                        Text(text = DateFormatter.millsToDate(currentDiary.date))
+                        Spacer(modifier = Modifier.size(30.dp))
+                        Text(text = currentDiary.body)
+                    }
                 }
             }
         }

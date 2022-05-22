@@ -12,6 +12,9 @@ interface DiaryDao {
     @Query("SELECT * FROM diary")
     fun getAll(): Flow<List<Diary>>
 
+    @Query("SELECT * FROM diary")
+    fun getAllNormal(): List<Diary>
+
     @Query("SELECT * FROM diary WHERE id IN (:diaryIds)")
     suspend fun loadAllByIds(diaryIds: LongArray): List<Diary>
 

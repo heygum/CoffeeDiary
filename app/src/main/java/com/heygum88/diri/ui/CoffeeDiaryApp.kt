@@ -38,8 +38,9 @@ fun CoffeeDiaryApp() {
 fun BottomBar(navController: NavHostController,navAction: NavAction) {
 
     val items = listOf(
-        "home",
-        "coffee"
+        NavDestination.HOME_DESTINATION,
+        NavDestination.COFFEE_DESTINATION,
+        NavDestination.SETTING_DESTINATION
     )
     Scaffold(
         bottomBar = {

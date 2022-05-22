@@ -10,6 +10,7 @@ import com.heygum88.diri.ui.coffee.CoffeeRoute
 import com.heygum88.diri.ui.diary.ReadDiary
 import com.heygum88.diri.ui.diary.WriteDiary
 import com.heygum88.diri.ui.home.HomeRoute
+import com.heygum88.diri.ui.setting.SettingRoute
 
 /**
  * Navigation Graph
@@ -33,6 +34,9 @@ fun NavGraph(
         }
         composable(NavDestination.READ_DIARY_DESTINATION) {
             ReadDiary(navAction)
+        }
+        composable(NavDestination.SETTING_DESTINATION) {
+            SettingRoute(navAction)
         }
     }
 }

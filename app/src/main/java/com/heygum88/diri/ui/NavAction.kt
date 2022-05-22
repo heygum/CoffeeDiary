@@ -13,6 +13,7 @@ object NavDestination {
     const val COFFEE_DESTINATION = "coffee"
     const val WRITE_DIARY_DESTINATION = "write_diary"
     const val READ_DIARY_DESTINATION = "read_diary"
+    const val SETTING_DESTINATION = "setting"
 }
 
 class NavAction(navController: NavHostController) {
@@ -67,6 +68,15 @@ class NavAction(navController: NavHostController) {
         }
     }
 
+    val navigateToSetting: () -> Unit = {
+        navController.navigate(NavDestination.SETTING_DESTINATION) {
+            popUpTo(navController.graph.findStartDestination().id) {
+                saveState = true
+            }
+            restoreState = true
+        }
+    }
+
     /**
      * Navigate
      */
@@ -83,6 +93,9 @@ class NavAction(navController: NavHostController) {
             }
             NavDestination.READ_DIARY_DESTINATION -> {
                 navigateToReadDiary.invoke()
+            }
+            NavDestination.SETTING_DESTINATION -> {
+                navigateToSetting.invoke()
             }
             else -> {
                 navigateToHome.invoke()
