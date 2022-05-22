@@ -1,7 +1,10 @@
 package com.heygum88.coffeediary.ui
 
+import androidx.compose.runtime.Composable
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
+import com.heygum88.coffeediary.vm.BasicViewModel
 
 
 /**
@@ -10,9 +13,15 @@ import androidx.navigation.NavHostController
 object NavDestination {
     const val HOME_DESTINATION = "home"
     const val COFFEE_DESTINATION = "coffee"
+    const val WRITE_DIARY_DESTINATION = "write_diary"
+    const val READ_DIARY_DESTINATION = "read_diary"
 }
 
 class NavAction(navController: NavHostController) {
+
+    val mNavController = navController
+
+    var vm: BasicViewModel? = null
 
     val navigateToHome: () -> Unit = {
         navController.navigate(NavDestination.HOME_DESTINATION) {
@@ -42,21 +51,49 @@ class NavAction(navController: NavHostController) {
         }
     }
 
+    val navigateToWriteDiary:() -> Unit = {
+        navController.navigate(NavDestination.WRITE_DIARY_DESTINATION) {
+            popUpTo(navController.graph.findStartDestination().id) {
+                saveState = true
+            }
+            restoreState = true
+        }
+    }
+
+    val navigateToReadDiary:() -> Unit = {
+        navController.navigate(NavDestination.READ_DIARY_DESTINATION) {
+            popUpTo(navController.graph.findStartDestination().id) {
+                saveState = true
+            }
+            restoreState = true
+        }
+    }
+
     /**
      * Navigate
      */
-    fun navigate(destination: String): () -> Unit {
+    fun navigate(destination: String) {
         when(destination) {
             NavDestination.HOME_DESTINATION -> {
-                return navigateToHome
+                navigateToHome.invoke()
             }
             NavDestination.COFFEE_DESTINATION -> {
-                return navigateToCoffee
+                navigateToCoffee.invoke()
+            }
+            NavDestination.WRITE_DIARY_DESTINATION -> {
+                navigateToWriteDiary.invoke()
+            }
+            NavDestination.READ_DIARY_DESTINATION -> {
+                navigateToReadDiary.invoke()
             }
             else -> {
-                return navigateToHome
+                navigateToHome.invoke()
             }
         }
+    }
+
+    fun goBack() {
+        mNavController.popBackStack()
     }
 
 }

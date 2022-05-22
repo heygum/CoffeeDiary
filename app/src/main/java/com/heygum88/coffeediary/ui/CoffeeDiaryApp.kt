@@ -15,6 +15,7 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.heygum88.coffeediary.vm.BasicViewModel
 
 
 const val TAG = "CoffeeDiaryApp"
@@ -54,7 +55,7 @@ fun BottomBar(navController: NavHostController,navAction: NavAction) {
                         selected = currentDestination?.hierarchy?.any { it.route == item } == true,
                         onClick = {
                             Log.d(TAG,item)
-                            navAction.navigate(item).invoke()
+                            navAction.navigate(item)
                         })
                 }
             }

@@ -1,11 +1,12 @@
 package com.heygum88.coffeediary.ui.home
 
+import android.content.Context
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Button
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -13,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import com.heygum88.coffeediary.data.Diary
 import com.heygum88.coffeediary.db.MDb
 import com.heygum88.coffeediary.ui.NavAction
+import com.heygum88.coffeediary.ui.theme.Gray200
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -25,10 +27,10 @@ const val TAG = "home"
 @Composable
 fun HomeRoute(navAction: NavAction) {
     val scope = rememberCoroutineScope()
-    Scaffold {
-
-        val context = LocalContext.current
-
+    val context = LocalContext.current
+    Scaffold(floatingActionButton = {
+        AddDiaryFloatButton(context,navAction)
+    }) {
         // diary list
         var mList by remember {
             mutableStateOf(
@@ -49,19 +51,21 @@ fun HomeRoute(navAction: NavAction) {
                 items(
                     items = mList,
                     itemContent = {
-                        DiaryListItem(diary = it)
+                        DiaryListItem(diary = it,navAction)
                     }
                 )
-        }
-
-        // Click button to write a diary
-        Button(onClick = {
-                val diary = Diary(body = "hello")
-                MDb.getInstance(context).DiaryDao().insertDiary(diary)
-            }) {
-                Text(text = "CLICK")
         }
     }
 }
 
+@Composable
+fun AddDiaryFloatButton(context: Context,navAction: NavAction) {
+    FloatingActionButton(onClick = {
+          navAction.navigateToWriteDiary.invoke()
+    },
+    backgroundColor = Gray200) {
+        Icon(Icons.Filled.Add,"")
+    }
+    
+}
 
