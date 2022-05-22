@@ -46,6 +46,7 @@ fun ReadDiary(navAction: NavAction) {
 @Composable
 fun ReadTopBar(navAction: NavAction) {
     TopAppBar(
+        elevation = 0.dp,
         modifier = Modifier.padding(4.dp),
         title = {
             Text(text = "")

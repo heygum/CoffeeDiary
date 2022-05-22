@@ -9,12 +9,15 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.heygum88.coffeediary.ui.NavAction
 import androidx.compose.ui.platform.LocalContext
 import com.heygum88.coffeediary.data.Diary
 import com.heygum88.coffeediary.db.MDb
+import com.heygum88.coffeediary.ui.theme.Blue200
 import kotlinx.coroutines.launch
 
 @Composable
@@ -22,7 +25,14 @@ fun WriteDiary(navAction: NavAction) {
 
     // this is the text user type
     var text by remember { mutableStateOf("") }
+
     val context = LocalContext.current
+    val autoFocus = FocusRequester() // focus
+
+    // auto focus to the textField when income
+    LaunchedEffect(Unit){
+        autoFocus.requestFocus()
+    }
 
     Scaffold(
         topBar = {
@@ -33,7 +43,15 @@ fun WriteDiary(navAction: NavAction) {
             .padding(it)
             .padding(horizontal = 20.dp)){
             TextField(value = text,  onValueChange = {text = it},
-            modifier = Modifier.fillMaxSize())
+            modifier = Modifier.fillMaxWidth()
+                .focusRequester(autoFocus),
+                colors = TextFieldDefaults.textFieldColors(
+                    backgroundColor = Color.Transparent,
+                    focusedIndicatorColor = Color.Transparent,
+                    unfocusedIndicatorColor = Color.Transparent,
+                    disabledIndicatorColor = Color.Transparent,
+                    cursorColor = Blue200
+                ))
         }
     }
 }
@@ -44,6 +62,7 @@ fun TopBar(context:Context,navAction: NavAction,text: String) {
     val scope = rememberCoroutineScope()
 
     TopAppBar(
+        elevation = 0.dp,
         modifier = Modifier.padding(4.dp),
         title = {
             Text(text = "")
