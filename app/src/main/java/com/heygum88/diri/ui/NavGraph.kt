@@ -20,7 +20,6 @@ fun NavGraph(
     navController: NavHostController = rememberNavController(),
     navAction: NavAction
 ) {
-    navAction.vm = viewModel()
 
     NavHost(navController = navController,startDestination = NavDestination.HOME_DESTINATION) {
         composable(NavDestination.HOME_DESTINATION) {

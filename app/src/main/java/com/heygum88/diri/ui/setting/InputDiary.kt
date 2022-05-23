@@ -36,7 +36,6 @@ fun InputDiary() {
 
     val context = LocalContext.current
     val db = MDb.getInstance(context)
-    val scope = rememberCoroutineScope()
     val filePicker = rememberLauncherForActivityResult(ActivityResultContracts.GetContent()){
         val items = context.contentResolver.openInputStream(it)
         if(!InputTools.inputSpecificDiary(items,db)) {

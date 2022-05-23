@@ -13,11 +13,13 @@ import com.heygum88.diri.ui.NavAction
 @Composable
 fun SettingRoute(navAction: NavAction) {
     Scaffold() {
-        Column() {
+        Column {
             ASpacer()
             OutputDiaryItem(navAction)
             ASpacer()
             InputDiary()
+            ASpacer()
+            SettingPassword(navAction)
         }
     }
 }
