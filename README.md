@@ -7,4 +7,4 @@ have finished the basic diary function
 - can output all diaries to Download folder'
 - can lock, if you lock with password, when you enter App, need to click the left top screen to enter password ( at that time the whole scrren is blank) 
 
-TODO: daily coffee record, app lock, calander, sort.
+TODO: daily coffee record, calander, sort.
