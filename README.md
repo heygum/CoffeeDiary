@@ -5,5 +5,6 @@ have finished the basic diary function
 - can not edit and delete diary after finish the diary (must not)
 - can input diaries by specific format from file
 - can output all diaries to Download folder'
+- can lock, if you lock with password, when you enter App, need to click the left top screen to enter password ( at that time the whole scrren is blank) 
 
 TODO: daily coffee record, app lock, calander, sort.
